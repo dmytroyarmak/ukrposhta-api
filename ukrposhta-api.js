@@ -8,7 +8,7 @@ var URKPOSHTA_API_HOST = 'services.ukrposhta.com';
 var URKPOSHTA_API_PATH = 'barcodestatistic/barcodes2tatistic.asmx';
 var URKPOSHTA_API_BARCODE_INFO_PATH = URKPOSHTA_API_PATH + '/GetBarcodeInfo';
 
-var GET_BARCODE_INFO_RESPONSE_PROPERTIES = [
+var BARCODE_INFO_PROPERTIES = [
     'barcode',
     'code',
     'lastOfficeIndex',
@@ -53,7 +53,7 @@ function parseReponseToXml (response) {
 }
 
 function convertToBarcodeInfo (parsedBarcodeInfoXML) {
-    return GET_BARCODE_INFO_RESPONSE_PROPERTIES.reduce(function(barcodeInfo, propertyName) {
+    return BARCODE_INFO_PROPERTIES.reduce(function(barcodeInfo, propertyName) {
         barcodeInfo[propertyName] = parsedBarcodeInfoXML.BarcodeInfoService[propertyName.toLowerCase()][0].trim()
         return barcodeInfo;
     }, {});

@@ -5,7 +5,7 @@ var Q = require('q');
 
 var URKPOSHTA_API_PROTOCOL = 'http';
 var URKPOSHTA_API_HOST = 'services.ukrposhta.com';
-var URKPOSHTA_API_PATH = 'barcodestatistic/barcodes2tatistic.asmx';
+var URKPOSHTA_API_PATH = 'barcodestatistic/barcodestatistic.asmx';
 var URKPOSHTA_API_BARCODE_INFO_PATH = URKPOSHTA_API_PATH + '/GetBarcodeInfo';
 
 var BARCODE_INFO_PROPERTIES = [

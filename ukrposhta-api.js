@@ -13,7 +13,8 @@ var BARCODE_INFO_PROPERTIES = [
     'code',
     'lastOfficeIndex',
     'lastOffice',
-    'eventDescription'
+    'eventDescription',
+    'eventDate'
 ];
 
 var DEFAULT_USER_KEY = 'fcc8d9e1-b6f9-438f-9ac8-b67ab44391dd';
@@ -52,9 +53,14 @@ function parseReponseToXml (response) {
     return Q.nfcall(xml2js.parseString, responseBody);
 }
 
+function getPropertyFromParsedXml (parsedBarcodeInfoXML, propertyName) {
+    var propertyValue = parsedBarcodeInfoXML.BarcodeInfoService[propertyName.toLowerCase()];
+    return (propertyValue && propertyValue[0].trim()) || '';
+}
+
 function convertToBarcodeInfo (parsedBarcodeInfoXML) {
     return BARCODE_INFO_PROPERTIES.reduce(function(barcodeInfo, propertyName) {
-        barcodeInfo[propertyName] = parsedBarcodeInfoXML.BarcodeInfoService[propertyName.toLowerCase()][0].trim()
+        barcodeInfo[propertyName] = getPropertyFromParsedXml(parsedBarcodeInfoXML, propertyName);
         return barcodeInfo;
     }, {});
 }
